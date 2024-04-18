@@ -11,23 +11,20 @@ describe('Controller', () => {
   })
 
   it('should return "Hello World" when health is called', () => {
-    // Arrange
     const req: Partial<Request> = {
       query: {}
     };
     const res: Partial<Response> = {
       send: jest.fn()
     };
-    // Act
     controller.health(req as Request, res as Response);
-    // Assert
     expect(res.send).toHaveBeenCalledWith("Hello World");
   });
   it('should respond with spells for valid query parameters', async () => {
     const req: Partial<Request> = {
       query: {
         Type: 'Charm',
-        light: 'blue'
+        light: 'Blue'
       }
     };
     const res: Partial<Response> = {
@@ -40,7 +37,7 @@ describe('Controller', () => {
   it('should respond with error for invalid type query param', async () => {
     const req: Partial<Request> = {
       query: {
-        light: 'blue'
+        light: 'Blue'
       }
     };
     const res: Partial<Response> = {
@@ -66,7 +63,7 @@ describe('Controller', () => {
 
     await controller.spells(req as Request, res as Response);
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: [{ isIn: 'light must be one of the following values: blue, red' }] });
+    expect(res.json).toHaveBeenCalledWith({ error: [{ isIn: 'light must be one of the following values: Blue, Red' }] });
   });
 
   it('should respond with new spell created for valid body', async () => {
@@ -77,7 +74,7 @@ describe('Controller', () => {
         effect: "Illuminates the wand tip",
         canBeVerbal: true,
         type: "Charm",
-        light: "blue"
+        light: "Blue"
       }
     };
     const res: Partial<Response> = {
@@ -125,7 +122,7 @@ describe('Controller', () => {
           isString: 'type must be a string',
         },
         {
-          isIn: 'light must be one of the following values: blue, red',
+          isIn: 'light must be one of the following values: Blue, Red',
           isNotEmpty: 'light should not be empty',
           isString: 'light must be a string',
         }

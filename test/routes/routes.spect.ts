@@ -13,7 +13,7 @@ describe('Routes', () => {
     expect(response.status).toBe(200);
   });
   it('should response GET to "/harrypotter/Spells" route', async () => {
-    const response = await request(app).get('/harrypotter/Spells?Type=Charm&&light=blue').send();
+    const response = await request(app).get('/harrypotter/Spells?Type=Charm&&light=Blue').send();
     expect(response.status).toBe(200);
   });
   it('should response POST to "/harrypotter/Spells" route', async () => {
@@ -23,7 +23,7 @@ describe('Routes', () => {
       effect: "Illuminates the wand tip",
       canBeVerbal: true,
       type: "Charm",
-      light: "blue"
+      light: "Blue"
     });
     expect(response.status).toBe(201);
   });

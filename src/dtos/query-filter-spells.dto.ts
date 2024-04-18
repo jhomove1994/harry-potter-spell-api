@@ -8,6 +8,6 @@ export class QueryFilterSpellsDTO {
 
   @IsOptional()
   @IsString()
-  @IsIn(['blue', 'red'])
+  @IsIn(['Blue', 'Red'])
   light?: LIGHT;
 }
