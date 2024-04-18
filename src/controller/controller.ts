@@ -4,6 +4,7 @@ import { LIGHT, QueryFilterSpellsDTO } from "../dtos/query-filter-spells.dto";
 import { validateOrReject } from "class-validator";
 import { handleError } from "../utils/error";
 import { CreateSpellDTO } from "../dtos/create-spell.dto";
+import createSpellMapper from "../mappers/create-spell.mapper";
 
 export class Controller {
   constructor(
@@ -29,13 +30,7 @@ export class Controller {
   }
 
   create = async ({ body }: Request, res: Response) => {
-    const spell = new CreateSpellDTO();
-    spell.name = body.name;
-    spell.incantation = body.incantation;
-    spell.effect = body.effect;
-    spell.canBeVerbal = body.canBeVerbal;
-    spell.type = body.type;
-    spell.light = body.light;
+    const spell = createSpellMapper(body);
     try {
       await validateOrReject(spell);
       const newSpell = await this.service.createSpell(spell);
