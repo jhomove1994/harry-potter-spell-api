@@ -24,6 +24,6 @@ export class CreateSpellDTO {
 
   @IsString()
   @IsNotEmpty()
-  @IsIn(['blue', 'red'])
+  @IsIn(['Blue', 'Red'])
   light: LIGHT;
 }
